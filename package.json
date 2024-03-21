@@ -1,0 +1,22 @@
+{
+  "name": "wa_toolkit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderMonkee/wa_toolkit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coderMonkee/wa_toolkit/issues"
+  },
+  "homepage": "https://github.com/coderMonkee/wa_toolkit#readme",
+  "dependencies": {
+    "express": "^4.19.1"
+  }
+}
