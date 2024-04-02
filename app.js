@@ -17,7 +17,10 @@ app.get('/', (req, res) => {
  
 async function sendMessageToWhatsApp({message,phone}) {
   try {
-    const response = await axios.post('https://wa-toolbox.web.app/webhooks/HUQE3OKQ3', {
+    const response = await axios.post(
+      // 'https://wa-toolbox.web.app/webhooks/HUQE3OKQ3', 
+      'https://wa-toolbox.web.app/webhooks/606N695S2',
+    {
       action: 'send-message',
       type: 'text',
       content: message,
@@ -236,7 +239,7 @@ app.post('/wa-recharge', async (req, res) => {
 
     if(Status=='Success'){ 
      const newResponse =  await sendMessageToWhatsApp({
-        message:`Recharge of ${amount} rupees successful for number ${number} with trasaction ref ${ApiTransID}.`,
+        message:`Recharge of ${amount} rupees successful for number ${number} for operator ${operator_code} and circle ${circle_code} with trasaction ref ${ApiTransID}.`,
         phone:m_phone
       })
       console.log(newResponse,"Send  Success Message");
@@ -247,7 +250,7 @@ app.post('/wa-recharge', async (req, res) => {
       });
     }else{ 
       const newResponse =  await sendMessageToWhatsApp({
-        message:`Recharge of ${amount} rupees $${ErrorMessage} for number ${number}.`,
+        message:`Recharge of ${amount} rupees ${ErrorMessage !=" " ?  ErrorMessage: Status} for number ${number} operator ${operator_code} and circle ${circle_code}.`,
         phone:m_phone
       })
       console.log(newResponse,"Send  failed Message");
@@ -263,11 +266,7 @@ app.post('/wa-recharge', async (req, res) => {
 
     console.error('Error occurred during recharge:', error);
 
-    res.status(400).json({
-      status: 400,
-      statusText: "BAD_REQUEST",
-      message: "Error occurred during recharge",
-    });
+    
   }
 }); 
 
