@@ -1,15 +1,15 @@
 const operators = [
     {
         "OperatorCode": "AT",
-        "OperatorName": "Airtel"
+        "OperatorName": "A"
     },
     {
         "OperatorCode": "VF",
-        "OperatorName": "VodafoneIdea"
+        "OperatorName": "V"
     },
     {
         "OperatorCode": "BSNL",
-        "OperatorName": "BSNL TopUp"
+        "OperatorName": "B"
     },
     {
         "OperatorCode": "BSV",
@@ -49,7 +49,7 @@ const operators = [
     },
     {
         "OperatorCode": "JIO",
-        "OperatorName": "Reliance Jio"
+        "OperatorName": "J"
     },
     {
         "OperatorCode": "JIOX",
@@ -256,6 +256,17 @@ function extractDetails(message) {
   const amount = amountMatch ? parseInt(amountMatch[1]) : null;
 
   return { number, operator, circle, amount };
+  }  
+
+  function parseMessage(message) {
+   
+    const parts = message.split('\n');
+
+   const [ rcg ,number,amount, operatorName, circle] = parts
+     
+   const operator = findOperatorCode(operatorName) 
+
+   return { number,amount,operator,circle}
   } 
 
 function findOperatorCode(operatorName) {
@@ -264,4 +275,4 @@ function findOperatorCode(operatorName) {
 }
   
 
-module.exports = { randomDigit ,extractDetails  ,findOperatorCode};
+module.exports = { randomDigit ,extractDetails  ,parseMessage,findOperatorCode};
